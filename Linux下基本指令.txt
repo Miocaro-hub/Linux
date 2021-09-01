@@ -100,3 +100,21 @@ date +%Y/%m/%d_%H:%M:%S  （格式可以自己定制）
 date +%s   #时间戳  表示从世界时1970年1月1日00：00：00开始累计至今的秒数
 通常会在日志中被使用
 
+cal  #日历
+
+find指令  查找文件（比较重要）
+
+alias   #起别名
+alias myexe='ls --color=auto'   之后在命令行输入myexe 就相当于打出了ls
+
+grep指令  文本行过滤，会显示出包含'999'内容的行
+例如： grep '999' file.txt
+grep指令经常用到过滤日志
+
+zip指令   #打包文件
+zip  classone.zip  classone/*
+就是将classone中的内容都打包进一个包classone.zip中
+
+unzip  classone.zip就可以把包里的文件都解压到当前路径
+
+unzip  classone.zip -d test就可以解压到指定的路径
