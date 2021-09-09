@@ -118,3 +118,10 @@ zip  classone.zip  classone/*
 unzip  classone.zip就可以把包里的文件都解压到当前路径
 
 unzip  classone.zip -d test就可以解压到指定的路径
+
+tar指令（重要）: 打包/解包，不用打开它，直接看内容
+例如：tar -czf  class.tgz  class  (c：建立一个压缩文件的参数指令，z：是否同时具有gzip属性？亦即是否需要用gzip压缩 ， f：使用档名，在f之后立即接档名)
+
+还有一些命令，例如clear，free，df -h指令可以了解
+
+指令不要强制记忆，每次多多查找，经常练习
