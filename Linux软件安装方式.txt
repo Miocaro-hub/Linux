@@ -1,0 +1,14 @@
+Linux软件安装方式：
+1、源码安装（工作时常用）
+2、rpm包安装
+3、yum（软件包管理器）（推荐）
+
+软件包和软件包管理器，就好比“App”和“应用商店”的关系
+yum（Yellow dog Updater,Modified）是Linux下非常常用的一种软件包管理器，主要应用在Fedora，RadHat，Centos等发行版上
+
+yum可以用来查找，下载，安装，卸载软件包
+
+yum list命令就可列出yum中所有可下载的软件
+例如：yum list | grep 'lrzsz'   就可以找到‘lrzsz’的软件
+找到之后yum install lrzsz.x86_64 就可以进行下载
+也可以卸载软件：yum remove lrzsz
