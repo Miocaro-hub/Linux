@@ -26,8 +26,6 @@ cd ..   #回退上级文件
 1、基本上，所有的操作系统文件管理，都采用的是树状结构。
 2、一般绝对路径，我们在配置文件中使用的最多。
 
-
-
 cd ~     #返回当前用户的主工作目录
 cd -      #记录是从那个路径来的，进入最近的一个目录
 
@@ -60,6 +58,26 @@ rm - rf同理就是既有递归又强制
 
 echo    #将后续符号，显示到显示器当中
 还有一种方式echo "hello Linux">test.txt   输出重定向，本来应该显示到显示器的内容，写入到文件中
+ps:例如我重定项四次：
+echo "hello Linux">test.txt
+echo "hello Linux">test.txt
+echo "hello Linux">test.txt
+echo "hello Linux">test.txt
+cat test.txt
+会发现显示器显示的内容还是hello Linux
+这是因为这种重定向是给文件写入全新的内容，会把之前的都先清空
+但如果是这样
+echo "hello Linux" >> test.txt
+echo "hello Linux" >> test.txt
+echo "hello Linux" >> test.txt
+echo "hello Linux" >> test.txt
+cat test.txt
+显示得内容就是
+hello Linux
+hello Linux
+hello Linux
+hello Linux
+这种方式就叫做追加重定项，每次写入都是在文件的结尾进行写入(新增内容)
 
 cat    #查看目标文件的内容
 cat + 文件名
@@ -125,3 +143,50 @@ tar指令（重要）: 打包/解包，不用打开它，直接看内容
 还有一些命令，例如clear，free，df -h指令可以了解
 
 指令不要强制记忆，每次多多查找，经常练习
+
+
+chmod   设置权限
+例如：chmod u-r  file.txt  意思就是取消了拥有者在file.txt文件下的读权限
+同样可以一次性决定多个权限
+例如 chmod u+rwx,g-r,o+w  file.txt
+
+目录的读权限：决定是查看目录下的文件的属性和文件名
+目录的写权限：是否允许特定的角色在指定目录下创建文件
+目录的x代表是否可以进入该目录
+无论是rw都得先进入目录！
+
+设置权限还有另一种方式
+三个权限为一组，每个权限1表示为有权限，0表示无权限
+此时例如rwxr-xrw-  就可以表示成111 101 110 
+换算成8进制就是756
+所以chmod 756 file.txt也可以，与chmod u+rwx,g+rx,o+rw等价
+
+chown   改变拥有者
+例如：sudo chown syy mydir  意思就是将mydir的文件的拥有者改为syy
+此时用sudo是因为要更改文件的拥有者需要获得对方的同意，或者需要更高的权限，而sudo就是权限短暂提升的一种方式
+
+chgrp  改变所属组同理
+
+chown  syy:syy file.txt   可以同时更改拥有者和所属组
+
+但是linux有一个现象：在特定的目录下，普通用户会受普通权限的约束，但是居然可以删除别人的文件，甚至是root
+chmod +t file.txt   此时other的权限x就变为了t（粘滞位）（只限于目录）
+此时的other就无法删除不属于他的文件
+
+添加信任组需要打开的文件：etc/sudoers
+里面显示的就是所有可以执行sudo命令的用户
+
+文件类型：
+-：普通文件（源代码，图片，动静态库，可执行程序，视频音频）
+d：目录
+s：套接字
+p：管道
+l：链接文件
+b：块设备（磁盘）
+c：字符设备（键盘、显示器）
+
+umask命令指定在建立文件时预设的权限掩码
+创建普通文件权限从666开始，创建目录默认权限从777开始
+凡是在umask中出现的权限，就要在默认权限中去掉
+
+rz,sz命令可以实现linux和windows中间文件的互相传输
