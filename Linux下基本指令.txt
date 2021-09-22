@@ -190,3 +190,5 @@ umask命令指定在建立文件时预设的权限掩码
 凡是在umask中出现的权限，就要在默认权限中去掉
 
 rz,sz命令可以实现linux和windows中间文件的互相传输
+
+readelf - 显示有关ELF文件的信息
